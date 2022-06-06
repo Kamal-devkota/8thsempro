@@ -5,18 +5,17 @@
 @section('main_content')
 
     <div class="content-wrapper fadeInDown">
-        <!-- Content Header (Page header) -->
+        
         <section class="content-header">
-            <h1>{{ __('Dashboard') }}
-
-                <small>{{ __('Control panel') }}</small>
-            </h1>
+            <h1>{{ __('Dashboard') }}</h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i>{{ __(' Home') }}</a></li>
+                <li><a href="#">{{ __(' Home') }}</a></li>
                 <li class="active">{{ __('Dashboard') }}</li>
             </ol>
         </section>
+
         @php($user = Auth::user())
+
         @if ($user->access_label == 1)
             <!-- Main content -->
             <section class="content">
@@ -257,5 +256,6 @@
             </section>
             <!-- /.content -->
         @endif
+
     </div>
 @endsection
