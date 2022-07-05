@@ -262,4 +262,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/hrm/noc/generate/{id}', 'LeaveAppController@nocGenerate');
 	Route::get('/hrm/certificate/generate/{id}', 'LeaveAppController@certificateGenerate');
 	Route::get('/hrm/certificate/list', 'LeaveAppController@certificateList');
+
+	// Profile Section
+	Route::get('/profile/user-profile', 'ProfileController@index');
+	Route::post('/profile/update-profile', 'ProfileController@update');
+	Route::get('/profile/change-password', 'ProfileController@change_password');
+	Route::post('/profile/update-password', 'ProfileController@update_password');
+
 });
