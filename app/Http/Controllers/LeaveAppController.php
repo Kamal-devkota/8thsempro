@@ -8,6 +8,7 @@ use App\Models\User;
 use DB;
 use PDF;
 use App\Models\Attendance;
+use App\Models\Noc;
 // use App\Noc;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -262,5 +263,45 @@ class LeaveAppController extends Controller
 
 	public function destroy(LeaveApplication $leaveApplication) {
 		//
+	}
+
+	public function nocAdd() {
+		return view('admin.hrm.certificate.nocAdd');
+	}
+
+
+	public function nocStore(Request $request) {
+
+        if($request->details==NULL or $request->bottom==NULL){
+        	return redirect('hrm/noc/add')->with('exception', 'please fill up the required!');
+        }else{
+		$nocs= new Noc();
+		$nocs->empid=$request->empid;
+		$nocs->category=$request->category;
+		$nocs->details=$request->details;
+		$nocs->bottom=$request->bottom;
+		$nocs->save();
+
+		return redirect('hrm/noc/add')->with('message', 'Save Successfully!');
+
+		}
+
+	}
+
+	public function nocList() {
+		return view('admin.hrm.certificate.nocList');
+	}
+
+	public function nocGenerate($id) {
+		return view('admin.hrm.certificate.nocGenerate', compact('id'));
+	}
+
+	public function certificateGenerate($id) {
+		return view('admin.hrm.certificate.certificateGenerate', compact('id'));
+	}
+
+
+	public function certificateList() {
+		return view('admin.hrm.certificate.list');
 	}
 }

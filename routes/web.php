@@ -253,4 +253,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/hrm/leave_application/{id}', 'LeaveAppController@show');
 	Route::get('/hrm/leave-reports', 'LeaveAppController@reports');
 	Route::get('/hrm/leave-reports/pdf-reports', 'LeaveAppController@pdf_reports');
+
+	// Experience ceritificate and Noc
+	Route::get('/hrm/noc/add', 'LeaveAppController@nocAdd');
+	Route::post('/hrm/noc/store', 'LeaveAppController@nocStore');
+	Route::get('/hrm/noc/list', 'LeaveAppController@nocList');
+
+	Route::get('/hrm/noc/generate/{id}', 'LeaveAppController@nocGenerate');
+	Route::get('/hrm/certificate/generate/{id}', 'LeaveAppController@certificateGenerate');
+	Route::get('/hrm/certificate/list', 'LeaveAppController@certificateList');
 });

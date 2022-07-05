@@ -41,9 +41,6 @@ class EmployeesController extends Controller
 
     public function store(Request $request)
     {
-        //return $request;
-        $url = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
-
         $employee = request()->validate([
             'employee_id' => 'required|max:250',
             'name' => 'required|max:100',
@@ -53,7 +50,6 @@ class EmployeesController extends Controller
             'email' => 'required|email|unique:users|max:100',
             'contact_no_one' => 'required|max:20',
             'emergency_contact' => 'nullable|max:20',
-            'web' => 'nullable|max:150|regex:' . $url,
             'gender' => 'required',
             'date_of_birth' => 'nullable|date',
             'present_address' => 'required|max:250',
@@ -62,7 +58,6 @@ class EmployeesController extends Controller
             'academic_qualification' => 'nullable',
             'professional_qualification' => 'nullable',
             'experience' => 'nullable',
-            'reference' => 'nullable',
             'joining_date' => 'nullable',
             'designation_id' => 'required|numeric',
             'joining_position' => 'required|numeric',
@@ -142,8 +137,6 @@ class EmployeesController extends Controller
     public function update(Request $request, $id) {
 		$employee = User::find($id);
 
-		$url = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
-
 		request()->validate([
 			'employee_id' => 'required|max:250',
 			'name' => 'required|max:100',
@@ -153,7 +146,6 @@ class EmployeesController extends Controller
 			'email' => 'required|email|max:100',
 			'contact_no_one' => 'required|max:20',
 			'emergency_contact' => 'nullable|max:20',
-			'web' => 'nullable|max:150|regex:' . $url,
 			'gender' => 'required',
 			'date_of_birth' => 'nullable|date',
 			'present_address' => 'required|max:250',
@@ -162,7 +154,6 @@ class EmployeesController extends Controller
 			'academic_qualification' => 'nullable',
 			'professional_qualification' => 'nullable',
 			'experience' => 'nullable',
-			'reference' => 'nullable',
 			'joining_date' => 'nullable',
 			'designation_id' => 'required|numeric',
 			'joining_position' => 'required|numeric',

@@ -265,25 +265,6 @@
                             </div>
                             <!-- /.form-group -->
 
-                    <!-- /.form-group -->
-                    <label for="joining_position">{{ __('Reference ') }}<span class="text-danger">*</span></label>
-                    <div class="form-group{{ $errors->has('joining_position') ? ' has-error' : '' }} has-feedback">
-                        <select name="reference" id="joining_position" class="form-control">
-                            <option value="" selected disabled>{{ __('Select one') }}</option>
-                            <?php $references = \App\Models\User::where('access_label', 4)
-                            ->where('deletion_status', 0)
-                            ->select('id', 'name', 'present_address', 'contact_no_one', 'created_at', 'activation_status')
-                            ->orderBy('id', 'DESC')
-                            ->get()
-                            ->toArray();?>
-                            @foreach($references as $reference)
-                            <option value="{{ $reference['name'] }}">{{ $reference['name'] }}</option>
-                            @endforeach
-                        </select>
-                        
-                    </div>
-                    <!-- /.form-group -->
-
                             <label for="marital_status">{{ __('Marital Status') }} </label>
                             <div class="form-group{{ $errors->has('marital_status') ? ' has-error' : '' }} has-feedback">
                                 <select name="marital_status" id="marital_status" class="form-control">

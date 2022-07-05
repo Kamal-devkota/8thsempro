@@ -133,6 +133,20 @@
                     </ul>
                 </li>
 
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-file-text"></i> <span>{{ __('Experience Certificate') }}</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('/hrm/noc/add') }}"> <span>{{ __('NOC/Certificate Add') }}</span></a></li>
+                        <li><a href="{{ url('/hrm/noc/list') }}"> <span>{{ __('NOC List') }}</span></a></li>
+                        <li><a href="{{ url('/hrm/certificate/list') }}"> <span>{{ __('Experience Certificate') }}</span></a></li>
+                    </ul>
+                </li>
+
             </ul>
         </div>
     </section>
