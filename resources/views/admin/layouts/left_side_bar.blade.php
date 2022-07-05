@@ -5,7 +5,7 @@
 
                 {{-- Dashboard --}}
                 <li>
-                    <a href="{{ url('/dashboard') }}"><i class="fa fa-dashboard"></i>
+                    <a href="{{ url('/') }}"><i class="fa fa-dashboard"></i>
                         <span>{{ __('Dashboard') }}</span></a>
                 </li>
 
@@ -20,10 +20,6 @@
                     <ul class="treeview-menu">
                         <li><a href="{{ url('/employees') }}">{{ __('Employees') }}</a></li>
                         <li><a href="{{ url('/clients') }}"> {{ __('Clients') }}</a></li>
-                        {{-- <li><a href="{{ url('/references') }}"><i
-                                    class="fa fa-circle-o"></i>{{ __('References') }}</a></li>
-                        <li><a href="{{ url('/references/create') }}"><i
-                                    class="fa fa-circle-o"></i>{{ __(' New Reference') }}</a></li> --}}
                     </ul>
                 </li>
 
