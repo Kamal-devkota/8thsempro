@@ -216,6 +216,38 @@ class EmployeesController extends Controller
 		return redirect('/employees')->with('exception', 'Operation failed !');
 	}
 
+	public function print() {
+		$employees = User::query()
+			->join('designations', 'users.designation_id', '=', 'designations.id')
+			->whereBetween('users.access_label', [2, 3])
+			->where('users.deletion_status', 0)
+			->select('users.id', 'users.employee_id', 'users.name', 'users.email', 'users.present_address', 'users.contact_no_one', 'designations.designation')
+			->orderBy('users.id', 'DESC')
+			->get()
+			->toArray();
+		return view('admin.employee.print', compact('employees'));
+	}
+
+	public function pdf($id) {
+		$employee = DB::table('users')
+			->join('designations', 'users.designation_id', '=', 'designations.id')
+			->select('users.*', 'designations.designation')
+			->where('users.id', $id)
+			->first();
+
+		$created_by = User::where('id', $employee->created_by)
+			->select('id', 'name')
+			->first();
+
+		$designations = Designation::where('deletion_status', 0)
+			->select('id', 'designation')
+			->get();
+
+		$pdf = PDF::loadView('admin.employee.pdf', compact('employee', 'created_by', 'designations'));
+		$file_name = 'EMP-' . $employee->id . '.pdf';
+		return $pdf->download($file_name);
+	}
+
     public function destroy($id) {
 		$affected_row = User::where('id', $id)
 			->update(['deletion_status' => 1]);

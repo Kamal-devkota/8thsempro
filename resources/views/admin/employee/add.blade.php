@@ -146,17 +146,6 @@
                             </div>
                             <!-- /.form-group -->
 
-                            <label for="web">{{ __('Web') }}</label>
-                            <div class="form-group{{ $errors->has('web') ? ' has-error' : '' }} has-feedback">
-                                <input type="text" name="web" id="web" class="form-control" value="{{ old('web') }}" placeholder="{{ __('Enter web..') }}">
-                                @if ($errors->has('web'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('web') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-                            <!-- /.form-group -->
-
                             <label for="gender">{{ __('Gender') }} <span class="text-danger">*</span></label>
                             <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }} has-feedback">
                                 <select name="gender" id="gender" class="form-control">
@@ -302,8 +291,6 @@
                                     <option value="1">{{ __('Married') }}</option>
                                     <option value="2">{{ __('Single') }}</option>
                                     <option value="3">{{ __('Divorced') }}</option>
-                                    <option value="4">{{ __('Separated') }}</option>
-                                    <option value="5">{{ __('Widowed') }}</option>
                                 </select>
                                 @if ($errors->has('marital_status'))
                                 <span class="help-block">

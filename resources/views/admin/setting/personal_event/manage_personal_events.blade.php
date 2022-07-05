@@ -1,17 +1,17 @@
 @extends('admin.layouts.master')
-@section('title', __('Designations'))
+@section('title', __('Personal Events'))
 
 @section('main_content')
 <div class="content-wrapper wow fadeInDown" data-wow-duration=".5s" data-wow-delay=".2s">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-           {{ __('DESIGNATIONS') }} 
+           {{ __('PERSONAL EVENT') }} 
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url('/dashboard') }}"><i class="fa fa-dashboard"></i> {{ __('Dashboard') }}</a></li>
             <li><a>{{ __('Setting') }}</a></li>
-            <li class="active">{{ __('Designations') }}</li>
+            <li class="active">{{ __('Personal Events') }}</li>
         </ol>
     </section>
 
@@ -20,7 +20,7 @@
         <!-- Default box -->
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">{{ __('Manage designations') }}</h3>
+                <h3 class="box-title">{{ __('Manage Personal Events') }}</h3>
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
@@ -30,7 +30,7 @@
             <div class="box-body">
                 
                 <div  class="col-md-6">
-                    <a href="{{ url('/setting/designations/create') }}" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i> {{ __('Add designation') }}</a>
+                    <a href="{{ url('/setting/personal-events/create') }}" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i>{{ __('Add personal event') }} </a>
                 </div>
                 <div  class="col-md-6">
                     <input type="text" id="myInput" class="form-control" placeholder="{{ __('Search..') }}">
@@ -50,39 +50,41 @@
                     @endif
                 </div>
                 <!-- /.Notification Box -->
-                <div  class="col-md-12 table-responsive">
+                    <div class="col-md-12 table-responsive">
                     <table  class="table table-bordered table-striped">
-                        <thead>
+                        <tbody id="myTable">
                             <tr>
-                                <th>{{ __('SN') }}</th>
-                                <th>{{ __('Designation') }}</th>
-                                <th>{{ __('Department') }}</th>
-                                {{-- <th>{{ __('Designation Description') }}</th> --}}
+                                <th>{{ __('SL#') }}</th>
+                                <th>{{ __('Personal Event') }}</th>
+                                <th>{{ __('Start Date') }}</th>
+                                <th>{{ __('End Date') }}</th>
+                                <th>{{ __('Personal Event Description') }}</th>
                                 <th class="text-center">{{ __('Added By') }}</th>
                                 <th class="text-center">{{ __('Added') }}</th>
                                 <th class="text-center">{{ __('Status') }}</th>
                                 <th class="text-center">{{ __('Actions') }}</th>
                             </tr>
                         </thead>
-                        <tbody id="myTable">
+                        <tbody>
                             @php ($sl = 1)
-                            @foreach($designations as $designation)
+                            @foreach($personal_events as $personal_event)
                             <tr>
                                 <td>{{ $sl++ }}</td>
-                                <td>{{ $designation['designation'] }}</td>
-                                <td>{{ $designation['department'] }}</td>
-                                {{-- <td>{{ \Illuminate\Support\Str::limit($designation['designation_description'], 65) }}</td> --}}
-                                <td>{{ $designation['name'] }}</td>
-                                <td class="text-center">{{ date("d F Y", strtotime($designation['created_at'])) }}</td>
+                                <td>{{ $personal_event['personal_event'] }}</td>
+                                <td class="text-center">{{ date("d F Y", strtotime($personal_event['start_date'])) }}</td>
+                                <td class="text-center">{{ date("d F Y", strtotime($personal_event['end_date'])) }}</td>
+                                <td>{{ \Illuminate\Support\Str::limit($personal_event['personal_event_description'], 65) }}</td>
+                                <td class="text-center">{{ $personal_event['name'] }}</td>
+                                <td class="text-center">{{ date("d F Y", strtotime($personal_event['created_at'])) }}</td>
                                 <td class="text-center">
-                                    @if ($designation['publication_status'] == 1)
-                                    <span class="label label-success">{{ __('Published') }}</span>
+                                    @if ($personal_event['publication_status'] == 1)
+                                     <span class="label label-success">{{ __('Published') }}</span>
                                 @else
                                 <span class="label label-warning">{{ __('Unpublished') }}</span>
                                     @endif
                                 </td>
-                                <td>
-                                    <a href="{{ url('/setting/designations/edit/' . $designation['id']) }}">{{ __('Edit') }}</a>
+                                <td class="text-center">
+                                  <a href="{{ url('/setting/personal-events/edit/' . $personal_event['id']) }}"><i class="icon fa fa-edit"></i> {{ __('Edit') }}</a>
                                 </td>
                             </tr>
                             @endforeach

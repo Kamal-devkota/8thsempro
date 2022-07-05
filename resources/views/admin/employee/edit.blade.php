@@ -282,8 +282,6 @@
                                     <option value="1">{{ __(' Married') }}</option>
                                     <option value="2">{{ __(' Single') }}</option>
                                     <option value="3">{{ __(' Divorced') }}</option>
-                                    <option value="4">{{ __(' Separated') }}</option>
-                                    <option value="5">{{ __(' Widowed') }}</option>
                                 </select>
                                 @if ($errors->has('marital_status'))
                                 <span class="help-block">

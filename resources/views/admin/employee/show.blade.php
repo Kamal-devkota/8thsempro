@@ -1,4 +1,4 @@
-@extends('administrator.master')
+@extends('admin.layouts.master')
 @section('title', __('Team member details'))
 
 @section('main_content')
