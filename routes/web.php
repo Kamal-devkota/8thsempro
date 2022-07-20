@@ -269,4 +269,27 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/profile/change-password', 'ProfileController@change_password');
 	Route::post('/profile/update-password', 'ProfileController@update_password');
 
+	//Attendance Section
+	Route::get('/hrm/attendance/manage', 'AttendanceController@index');
+	Route::post('/hrm/attendance/set', 'AttendanceController@set_attendance');
+	Route::post('/hrm/attendance/store', 'AttendanceController@store');
+	Route::post('/hrm/attendance/update', 'AttendanceController@update');
+	Route::get('/hrm/attendance/report', 'AttendanceController@report');
+	Route::post('/hrm/attendance/get-report', 'AttendanceController@get_report');
+	Route::post('/hrm/attendance/time/set', 'AttendanceController@timeSet');
+	Route::get('/hrm/attendance/details/{id}', 'AttendanceController@attDetails');
+	Route::get('/hrm/attendance/details/report/go', 'AttendanceController@attDetailsReportGenerate');
+	Route::get('/hrm/attendance/details/report/all', 'AttendanceController@attDetailsReport');
+	Route::get('/hrm/attendance/details/report/pdf', 'AttendanceController@attDetailsReportPdf');
+
+	// roles section
+	Route::get('/admin/roles/index', 'RolesController@index');
+	Route::get('/admin/roles/add', 'RolesController@add');
+	Route::post('/admin/roles/store', 'RolesController@store');
+	Route::get('/admin/roles/edit/{id}', 'RolesController@edit');
+	Route::get('/admin/roles/edit-permissions/{id}', 'RolesController@editPermissions');
+	Route::post('/admin/roles/update-permissions/{id}', 'RolesController@updatePermissions');
+	Route::post('/admin/roles/update/{id}', 'RolesController@update');
+	Route::get('/admin/roles/delete/{id}', 'RolesController@delete');
+
 });

@@ -22,11 +22,6 @@
         <div class="box box-default">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ __('Edit Loan') }}</h3>
-
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-                </div>
             </div>
             <!-- /.box-header -->
             <form action="{{ url('/hrm/loans/update/' . $loan['id']) }}" method="post" name="loan_add_form">

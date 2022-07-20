@@ -364,7 +364,7 @@
         <div class="container">
 
 
-            <?php $nocs = \App\Noc::all()->where('id', $id); ?>
+            <?php $nocs = \App\Models\Noc::all()->where('id', $id); ?>
             @foreach ($nocs as $noc)
                 <div class="row">
 
@@ -394,7 +394,7 @@
                     <div class="col-lg-12">
                         <table class="table">
                             <tr>
-                                <th scope="col">{{ __('Mr.') }} {{ \App\User::find($noc->empid)->name }}</th>
+                                <th scope="col">{{ __('Mr.') }} {{ \App\Models\User::find($noc->empid)->name }}</th>
                             </tr>
                             <tr>
                                 <td>{{ $noc->details }}</td>

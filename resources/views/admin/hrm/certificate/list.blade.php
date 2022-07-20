@@ -21,13 +21,6 @@
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ __('Manage Certificate') }}</h3>
-
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                            title="Collapse"><i class="fa fa-minus"></i></button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip"
-                            title="Remove"><i class="fa fa-times"></i></button>
-                    </div>
                 </div>
                 <div class="box-body">
 
@@ -69,7 +62,7 @@
                                 @foreach ($nocs as $noc)
                                     <tr>
                                         <td>{{ $sl++ }}</td>
-                                        <td>{{ \App\User::find($noc->empid)->name }}</td>
+                                        <td>{{ \App\Models\User::find($noc->empid)->name }}</td>
                                         <td class="text-center">{{ $noc->created_at->format('d/m/Y') }}</td>
                                         <td class="text-center">
                                             <a href="{{ url('/hrm/certificate/generate/' . $noc->id) }}"><i

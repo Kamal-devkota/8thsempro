@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\Designation;
-use App\Models\Role;
+use Spatie\Permission\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -64,7 +64,6 @@ class EmployeesController extends Controller
             'marital_status' => 'nullable',
             'id_name' => 'nullable',
             'id_number' => 'nullable|max:100',
-            'role' => 'required',
         ], [
             'designation_id.required' => 'The designation field is required.',
             'contact_no_one.required' => 'The contact no field is required.',
@@ -75,8 +74,6 @@ class EmployeesController extends Controller
 
         $result = User::create($employee + ['created_by' => auth()->user()->id, 'access_label' => 2, 'password' => bcrypt(12345678)]);
         $inserted_id = $result->id;
-
-        // $result->attachRole(Role::where('name', $request->role)->first());
 
         if (!empty($inserted_id)) {
             return redirect('/employees/create')->with('message', 'Add successfully.');
@@ -123,7 +120,7 @@ class EmployeesController extends Controller
 	}
 
     public function edit($id) {
-		$employee = User::find($id)->toArray();
+		$employee = User::find($id);
 		$designations = Designation::where('deletion_status', 0)
 			->where('publication_status', 1)
 			->orderBy('designation', 'ASC')
@@ -131,7 +128,8 @@ class EmployeesController extends Controller
 			->get()
 			->toArray();
 		$roles = Role::all();
-		return view('admin.employee.edit', compact('employee', 'roles', 'designations'));
+		$userRole = $employee->roles->pluck('name', 'name')->all();
+		return view('admin.employee.edit', compact('employee', 'roles', 'designations','userRole'));
 	}
 
     public function update(Request $request, $id) {
@@ -160,7 +158,7 @@ class EmployeesController extends Controller
 			'marital_status' => 'nullable',
 			'id_name' => 'nullable',
 			'id_number' => 'nullable|max:100',
-			// 'role' => 'required',
+			'role' => 'required',
 		], [
 			'designation_id.required' => 'The designation field is required.',
 			'contact_no_one.required' => 'The contact no field is required.',
@@ -177,7 +175,6 @@ class EmployeesController extends Controller
 		$employee->email = $request->get('email');
 		$employee->contact_no_one = $request->get('contact_no_one');
 		$employee->emergency_contact = $request->get('emergency_contact');
-		$employee->web = $request->get('web');
 		$employee->gender = $request->get('gender');
 		$employee->date_of_birth = $request->get('date_of_birth');
 		$employee->present_address = $request->get('present_address');
@@ -186,7 +183,6 @@ class EmployeesController extends Controller
 		$employee->academic_qualification = $request->get('academic_qualification');
 		$employee->professional_qualification = $request->get('professional_qualification');
 		$employee->experience = $request->get('experience');
-		$employee->reference = $request->get('reference');
 		$employee->joining_date = $request->get('joining_date');
 		$employee->designation_id = $request->get('designation_id');
 		$employee->joining_position = $request->get('joining_position');
@@ -197,9 +193,8 @@ class EmployeesController extends Controller
 		$employee->role = $request->get('role');
 		$affected_row = $employee->save();
 
-		// DB::table('role_user')
-		// 	->where('user_id', $id)
-		// 	->update(['role_id' => $request->input('role')]);
+		DB::table('model_has_roles')->where('model_id', $id)->delete();
+        $employee->assignRole($request->input('role'));
 
 		if (!empty($affected_row)) {
 			return redirect('/employees')->with('message', 'Update successfully.');

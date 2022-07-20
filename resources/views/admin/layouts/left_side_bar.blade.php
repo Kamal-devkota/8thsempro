@@ -115,6 +115,21 @@
                     </ul>
                 </li>
 
+                {{-- Attendance Management --}}
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-calendar"></i> <span>{{ __('Attendance Management') }}</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('/hrm/attendance/manage') }}">{{ __('Manage Attendance') }} </a></li>
+                        <li><a href="{{ url('/hrm/attendance/details/report/go') }}">{{ __(' Attendance Statement') }}</a></li>
+                        <li><a href="{{ url('/hrm/attendance/report') }}">{{ __(' Attendance Report') }}</a></li>
+                    </ul>
+                </li>
+
                 {{-- Award Mgmt --}}
                 <li class="treeview">
                     <a href="#">
@@ -129,6 +144,7 @@
                     </ul>
                 </li>
 
+                {{-- Experience Certificate --}}
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-file-text"></i> <span>{{ __('Experience Certificate') }}</span>
@@ -137,9 +153,23 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{ url('/hrm/noc/add') }}"> <span>{{ __('NOC/Certificate Add') }}</span></a></li>
-                        <li><a href="{{ url('/hrm/noc/list') }}"> <span>{{ __('NOC List') }}</span></a></li>
+                        <li><a href="{{ url('/hrm/noc/add') }}"> <span>{{ __('Add Certificate') }}</span></a></li>
+                        <!-- <li><a href="{{ url('/hrm/noc/list') }}"> <span>{{ __('NOC List') }}</span></a></li> -->
                         <li><a href="{{ url('/hrm/certificate/list') }}"> <span>{{ __('Experience Certificate') }}</span></a></li>
+                    </ul>
+                </li>
+
+                {{-- Roles --}}
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-file-text"></i> <span>{{ __('Roles') }}</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url('/admin/roles/add') }}"> <span>{{ __('Add Role') }}</span></a></li>
+                        <li><a href="{{ url('/admin/roles/index') }}"> <span>{{ __('Roles') }}</span></a></li>
                     </ul>
                 </li>
 

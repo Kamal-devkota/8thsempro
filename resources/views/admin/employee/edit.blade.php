@@ -22,11 +22,6 @@
         <div class="box box-default">
             <div class="box-header with-border">
                 <h3 class="box-title">   {{ __('Edit team member details') }}</h3>
-
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-                </div>
             </div>
             <!-- /.box-header -->
             <form action="{{ url('/employees/update/'.$employee['id']) }}" method="post" name="employee_edit_form">
@@ -133,17 +128,6 @@
                                 @if ($errors->has('emergency_contact'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('emergency_contact') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-                            <!-- /.form-group -->
-
-                            <label for="web">{{ __(' Web') }}</label>
-                            <div class="form-group{{ $errors->has('web') ? ' has-error' : '' }} has-feedback">
-                                <input type="text" name="web" id="web" class="form-control" value="{{ $employee['web'] }}">
-                                @if ($errors->has('web'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('web') }}</strong>
                                 </span>
                                 @endif
                             </div>
@@ -309,7 +293,7 @@
                                 <select name="role" id="role" class="form-control">
                                     <option value="" selected disabled>{{ __(' Select one') }}</option>
                                     @foreach($roles as $role)
-                                    <option value="{{ $role->id }}">{{ $role->display_name }}</option>
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('role'))
@@ -355,16 +339,6 @@
                             </div>
                             <!-- /.form-group -->
 
-                            <label for="reference">{{ __(' Reference') }}</label>
-                            <div class="form-group{{ $errors->has('reference') ? ' has-error' : '' }} has-feedback">
-                                <textarea name="reference" id="reference" class="form-control textarea">{{ $employee['reference'] }}</textarea>
-                                @if ($errors->has('reference'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('reference') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-                            <!-- /.form-group -->
                         </div>
                         <!-- /.row -->
                     </div>

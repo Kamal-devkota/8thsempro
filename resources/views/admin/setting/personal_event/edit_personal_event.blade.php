@@ -23,11 +23,6 @@
         <div class="box box-default">
             <div class="box-header with-border">
                 <h3 class="box-title">{{ __('Edit personal event') }}</h3>
-
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-                </div>
             </div>
             <!-- /.box-header -->
             <form action="{{ url('/setting/personal-events/update/'. $personal_event['id']) }}" method="post" name="personal_event_edit_form">
