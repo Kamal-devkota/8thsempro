@@ -28,9 +28,9 @@
           <div class="state_hader clearfix">
             <div class="state_logo float-left w-50">
               @if(!empty(auth()->user()->avatar))
-              <img src="{{ asset('public/profile_picture/'.auth()->user()->avatar) }}" class="img-fluid" alt="User Image">
+              <img src="{{ asset('/profile_picture/'.auth()->user()->avatar) }}" class="img-fluid" alt="User Image">
               @else
-              <img src="{{ asset('public/profile_picture/blank_profile_picture.png') }}" class="img-fluid" alt="User Image">
+              <img src="{{ asset('/profile_picture/blank_profile_picture.png') }}" class="img-fluid" alt="User Image">
               @endif
             </div>
             <div class="state_title float-left w-50">

@@ -18,7 +18,7 @@
 
         @if ($user->access_label == 1)
             <!-- Main content -->
-            <section class="content">
+            <section class="">
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
@@ -68,22 +68,6 @@
                                 </div>
                                 <a href="{{ url('/people/employees') }}"
                                     class="small-box-footer">{{ __('View More ') }}<i
-                                        class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-primary">
-                                <div class="inner">
-                                    <h3><i class="fa fa-image"></i> {{ count($files) }}</h3>
-
-                                    <center> <b>{{ __('Files') }}</b></center>
-                                </div>
-                                <div class="icon">
-
-                                </div>
-                                <a href="{{ url('/folders') }}" class="small-box-footer">{{ __('View More') }} <i
                                         class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
@@ -166,28 +150,27 @@
                             var myChart = new Chart(ctx, {
                                 type: 'pie',
                                 data: {
-                                    labels: ['Employees', 'Notices', 'Holidays', 'Files'],
+                                    labels: ['Employees', 'Notices', 'Holidays'],
                                     datasets: [{
                                         label: 'Evaluation report by pie chart',
-                                        data: [{{ count($employees) }}, {{ count($notics) }}, {{ count($holidays) }},
-                                            {{ count($files) }}
-                                        ],
-                                        backgroundColor: [
-                                            '#7bed9f',
-                                            '#b71c1c',
-                                            '#54a0ff',
-                                            '#686de0',
-                                        ],
-                                        borderColor: [
-                                            '#7bed9f',
-                                            '#b71c1c',
-                                            '#54a0ff',
-                                            '#686de0',
-                                        ],
+                                        data: [{{ count($employees) }}, {{ count($notics) }}, {{ count($holidays) }}],
+                                        // backgroundColor: [
+                                        //     '#7bed9f',
+                                        //     '#b71c1c',
+                                        //     '#54a0ff',
+                                        //     '#686de0',
+                                        // ],
+                                        // borderColor: [
+                                        //     '#7bed9f',
+                                        //     '#b71c1c',
+                                        //     '#54a0ff',
+                                        //     '#686de0',
+                                        // ],
                                         borderWidth: 0
                                     }]
                                 },
                                 options: {
+                                    responsive: false,
                                     scales: {
                                         yAxes: [{
                                             ticks: {
