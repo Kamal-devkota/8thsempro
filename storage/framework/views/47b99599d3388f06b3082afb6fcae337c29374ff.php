@@ -1,0 +1,1 @@
+<?php /**PATH /var/www/html/KarmaPatro/resources/views/layouts/master.blade.php ENDPATH**/ ?>
